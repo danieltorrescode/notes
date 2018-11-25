@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+<div class="row">
+	<div class="col-sm">
+		{% block content %}
+		<div class="container-fluid">
+			<!-- SIDE BLOCK -->
+			<div class="col-sm-4" style="float:right;">
+				<div class="block">
+					<div class="card sidecard">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+							<p class="card-text">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor cididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							</p>
+							<a href="#" class="card-link">Card link</a>
+							<a href="#" class="card-link">Another link</a>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="block">
+					<div class="card sidecard">
+						<img class="card-img-top" src="{% static 'img/my_notes_2.jpg' %}" alt="my_notes_2">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+								sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+								Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+								nulla pariatur.
+								Excepteur sint occaecat cupidatat non proident,
+								sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</p>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">Cras justo odio</li>
+							<li class="list-group-item">Dapibus ac facilisis in</li>
+							<li class="list-group-item">Vestibulum at eros</li>
+						</ul>
+						<div class="card-body">
+							<a href="#" class="card-link">Card link</a>
+							<a href="#" class="card-link">Another link</a>
+						</div>
+					</div>
+				</div>
+				<br>
+				<!-- <div class="block"></div> -->
+			</div>
+
+			<!-- MAIN BLOCK -->
+			<div class="col-sm-8 shadowblock">
+				<table class="table table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col"></th>
+							<th scope="col">Title</th>
+							<!-- <th scope="col">Visibility</th>
+							<th scope="col">Content</th> -->
+							<th scope="col">Category</th>
+							<th scope="col">Tags</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in list_notes %}
+						<tr>
+							<td><h4>#</h4></td>
+							<td></td>
+							<td>
+								<h4>
+									<a class="nav-link" href="{% url 'notes:note_detail' item.id %}">
+										{{item.title}}
+									</a>
+								</h4>
+							</td>
+							<!--<td><h4>{{item.content}}</h4></td>
+							<td><h4>{{item.visible_type}}</h4></td>-->
+							<td>
+								<span class="badge badge-secondary">{{item.category}}</span>
+							</td>
+							<td>
+								{% for tag in item.all_tags %}
+								<span class="badge badge-pill badge-warning">{{tag}}</span>
+								{% endfor %}
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+			<hr style="clear: right;">
+
+		</div>
+		{% endblock %}
+	</div>
+</div>

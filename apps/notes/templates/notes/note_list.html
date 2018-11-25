@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+<div class="row">
+	<div class="col-sm-12">
+		{% block content %}
+		<div class="container-fluid">
+			<div class="row justify-content-center">
+				<div class="col-sm-12">
+					<div class="block">
+						<a href="{% url 'notes:note_create' %}" class="badge badge-light mb-2">
+							<h3>Add Note</h3>
+						</a>
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col"></th>
+									<th scope="col">Title</th>
+									<th scope="col">Visibility</th>
+									<!-- <th scope="col">Content</th> -->
+									<th scope="col">Category</th>
+									<th scope="col">Tags</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for item in object_list %}
+									<tr>
+										<th scope="row">
+											<a class="badge badge-danger" href="{% url 'notes:note_delete' item.id %}">
+													X
+											</a>
+										</th>
+										<td>
+											<h4>
+												<a class="badge badge-primary" href="{% url 'notes:note_update' item.id %}">
+														Edit
+												</a>
+											</h4>
+										</td>
+										<td>
+											<h4>
+												<a class="nav-link" href="{% url 'notes:note_detail' item.id %}">
+														{{item.title}}
+												</a>
+											</h4>
+										</td>
+										<!--<td><h4>{{item.content}}</h4></td> -->
+										<td><h4>{{item.visible_type}}</h4></td>
+										<td><h4>{{item.category}}</h4></td>
+										<td>
+											{% for tag in item.all_tags %}
+												<h5>{{tag}}</h5>
+											{% endfor %}
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}
+	</div>
+</div>

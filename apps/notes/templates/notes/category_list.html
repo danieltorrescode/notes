@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+<div class="row">
+	<div class="col-sm">
+		{% block content %}
+		<div class="container-fluid">
+			<div class="row justify-content-center">
+				<div class="col-sm-6">
+					<div class="block">
+						<a href="{% url 'notes:category_create' %}" class="badge badge-light mb-2">
+							<h3>Add Category</h3>
+						</a>
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col"></th>
+									<th scope="col">Category</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for item in object_list %}
+									<tr>
+										<th scope="row">
+											<a class="badge badge-danger" href="{% url 'notes:category_delete' item.id %}">
+													X
+											</a>
+										</th>
+										<td>
+											<h4>
+												<a class="badge badge-primary" href="{% url 'notes:category_update' item.id %}">
+														Edit
+												</a>
+											</h4>
+										</td>
+										<td><h4>{{item.category}}</h4></td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}
+	</div>
+</div>

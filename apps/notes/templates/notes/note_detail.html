@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+	<div class="col-sm">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="block">
+						<a href="{% url 'notes:note_create' %}" class="badge badge-light mb-2">
+							<h3>Add Note</h3>
+						</a>
+						<form>
+							<div class="form-group">
+								<input type="text" disabled class="form-control" value="{{ note.title }}">
+							</div>
+							<div class="form-group">
+								<blockquote class="blockquote text-center">
+								  <p class="mb-0">
+											{{ note.content }}
+									</p>
+								</blockquote>
+							</div>
+							<div class="form-group">
+								<input type="text" disabled class="form-control" value="{{ note.visible_type }}">
+							</div>
+							<div class="form-group">
+								<input type="text" disabled class="form-control" value="{{ note.category }}">
+							</div>
+							<div class="form-group">
+								<ul class="list-group">
+									{% for tag in note.all_tags %}
+										<li class="list-group-item list-group-item-dark">{{tag}}</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}
+	</div>
+</div>
